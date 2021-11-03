@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Portal de notícias</title>
+	<script src="js/jquery-2.2.1.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+		integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+	<nav class="navbar navbar-default navbar-static-top">	
+		<div class="container">
+			<div class="navbar-header" style="height: 3cm;">				
+				<img src="images/logo.png" style="width: 10cm;"/>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="admin" style="color: red;">ADMIN</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="./">HOME</a></li>
+			</ul>
+		</div>
+	</nav>
+
+
+
+
+
+	<div class="container">
+
+		<!-- Botao de login -->
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo"
+			style="float: right;">
+			Clicar para logar
+		</button>
+
+		<div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+					<div class="modal-body">
+						<label for="pin">Digite seu PIN (1234): </label>
+						<input id="pin" type="text">
+
+						<button type=" button" class="btn btn-default" onclick="login()">Entrar</button>
+
+						<script>
+							function login() {
+								var valor = document.getElementById("pin").value;
+								if (valor == 1234) {
+									window.location.replace("http://localhost:3000/admin");
+								}
+							}
+						</script>
+					</div>
+					<div class=" modal-footer">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<h1>Seu painel principal notícias</h1>
+
+		<div class="row">
+			<% for(var i=0; i < noticias.length; i++) { %>
+				<div class="col-md-4">
+					<div class="noticia_wrapper">
+
+						<a href="noticia?id_noticia=<%= noticias[i].id_noticia %>" class="noticia_titulo">
+							<%= noticias[i].titulo %>
+						</a>
+						<br />
+						<span class="noticia_tema">
+							<%= noticias[i].tema %>
+						</span>
+						<br />
+
+
+						<p class="noticia_descricao">
+							<%= noticias[i].descricao.substring(0,100) %>
+								<% if(noticias[i].descricao.length> 100) {%>
+									...
+									<% } %>
+						</p>
+
+					</div>
+				</div>
+
+
+
+
+				<% } %>
+		</div>
+
+		<div class="row ver_mais">
+			<button type="button" class="btn btn-default"><a href="noticias">Ver todas as notícias</a></button>
+		</div>
+
+	</div>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+		integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+		crossorigin="anonymous"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title>Portal de notícias</title>
+		<script src="js/jquery-2.2.1.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+			integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link href="css/style.css" rel="stylesheet">
+	</head>
+
+	<body>
+
+		<nav class="navbar navbar-default navbar-static-top">	
+			<div class="container"></div>
+		</nav>
+
+
+	    <div class="container">
+			
+				<!-- Validacao de entrada -->
+				<% if(validacao.length>0) { %>
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="alert alert-danger">
+								<strong>Atenção!</strong>
+								<ul>
+									<% for(var i=0; i < validacao.length; i++) { %>
+										<li>
+											<%= validacao[i].msg %>
+										</li>
+										<% } %>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<% } %>
+
+						<!-- formulario -->
+						<div class="modal-body">
+					<div class="row">
+						<div class="form_adicionar_noticia">
+
+							<form action="/noticias/salvar" method="post" autocomplete="off">
+								<div class="form-group" >
+									<label for="titulo">Título:</label>
+									<input type="text" class="form-control" id="titulo" name="titulo"
+										value="<%=noticia.titulo%>">
+								</div>
+
+								<div class="form-group">
+									<label for="pwd">Descrição:</label>
+									<textarea class="form-control" id="descricao" name="descricao"
+										value="<%=noticia.descricao%>"></textarea>
+								</div>
+
+								<div class="form-group">
+									<label for="pwd">Tema:</label>
+									<select name="tema" id="tema">
+										<option value="Esportes">Esportes</option>
+										<option value="Politica">Política</option>
+										<option value="Entreterimento">Entreterimento</option>
+										<option value="Famosos">Famosos</option>
+									</select>
+								</div>
+
+								<div class="form-group">
+									<label for="pwd">Link:</label>
+									<input type="text" class="form-control" id="link" name="link"
+										value="<%=noticia.link%>">
+								</div>
+
+								<div class="form-group">
+									<label for="pwd">Link da imagem:</label>
+									<input type="text" class="form-control" id="link_imagem"
+										name="link_imagem" value="<%=noticia.link_image%>">
+								</div>
+
+								<button type="button" class="btn btn-default" onclick="voltarInicio()" style="background-color: rgb(170, 44, 22); color: white;">Voltar</button>
+
+
+								<button type="submit" class="btn btn-default"
+									style="background-color: green; color: white;">Cadastrar</button>
+
+									
+								<script>
+									function voltarInicio(){window.location.href = "http://localhost:3000/";}
+								</script>
+
+							</form>
+							<!-- fim do formulario -->
+						</div>
+					</div>
+
+			</div>
+	    </div>
+	
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	
+	</body>
+</html>
